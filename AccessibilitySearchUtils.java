@@ -8,7 +8,7 @@ import java.util.Stack;
 
 /**
  * Created by yair.pecherer on 04/01/2018.
- * Search the accessibilityNodeInfo tree recursively
+ * Search the accessibilityNodeInfo tree non-recursively
  */
 
 class AccessibilitySearchUtils {
@@ -87,40 +87,6 @@ class AccessibilitySearchUtils {
                 searchAssistant.onNodeFound(node);
             }
         }
-
-//        if(searchAssistant.search(rootNode, textToSearch)) {
-//            searchAssistant.onNodeFound(rootNode);
-//        }
-
-//        for(int i = 0; i < rootNode.getChildCount(); i++)
-//        {
-//            AccessibilityNodeInfo child = rootNode.getChild(i);
-//            searchTree(child, searchAssistant, textToSearch);
-//        }
-    }
-
-    static void searchClonedTree(List<AccessibilityNodeData> nodes, IClonedAccessibilityTreeSearchAssistant searchAssistant, String textToSearch) {
-        if(nodes != null) {
-            for(AccessibilityNodeData node : nodes) {
-                searchClonedTree(node, searchAssistant, textToSearch);
-            }
-        }
-    }
-
-    static void searchClonedTree(AccessibilityNodeData rootNode, IClonedAccessibilityTreeSearchAssistant searchAssistant, String textToSearch) {
-        if(rootNode == null) {
-            return;
-        }
-
-        if(searchAssistant.search(rootNode, textToSearch)) {
-            searchAssistant.onNodeFound(rootNode);
-        }
-
-//        for(int i = 0; i < rootNode.getChildCount(); i++)
-//        {
-//            AccessibilityNodeData child = rootNode.getChild(i);
-//            searchClonedTree(child, searchAssistant, textToSearch);
-//        }
     }
 
     static <T> List<T> getIntersection(List<T>... lists) {
@@ -147,10 +113,5 @@ class AccessibilitySearchUtils {
     interface IAccessibilityTreeSearchAssistant {
         boolean search(AccessibilityNodeInfo child, String textToSearch);
         void onNodeFound(AccessibilityNodeInfo nodeFound);
-    }
-
-    interface IClonedAccessibilityTreeSearchAssistant {
-        boolean search(AccessibilityNodeData child, String textToSearch);
-        void onNodeFound(AccessibilityNodeData nodeFound);
     }
 }
